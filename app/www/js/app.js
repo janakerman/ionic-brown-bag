@@ -5,7 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', [
     'ionic',
-    'starter.services'
+    'starter.services',
+    'starter.controllers'
   ])
 
 .run(function($ionicPlatform) {
@@ -20,3 +21,17 @@ angular.module('starter', [
     }
   });
 })
+
+  .config(function($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('contacts', {
+        url: "/contacts",
+        templateUrl: "templates/contact-list.html",
+        controller: 'ContactListCtrl'
+      })
+
+    $urlRouterProvider.otherwise("/contacts");
+
+  });
+
