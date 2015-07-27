@@ -1,23 +1,47 @@
 angular.module('starter.services', [])
 
-	.factory('contactService', function() {
+	.factory('contactService', function($q, $ionicPlatform) {
+
+		var CONTACT_FILENAME = "contacts.json";
+
 		function getContacts() {
-			return [
-				{ name: 'Contact 1', age: 18, position: 'Intern' },
-				{ name: 'Contact 2', age: 35, position: 'Developer' },
-				{ name: 'Contact 3', age: 65, position: 'Project Manager' },
-				{ name: 'Contact 4', age: 34, position: 'Senior Developer' },
-				{ name: 'Contact 5', age: 56, position: 'Senior Developer' },
-				{ name: 'Contact 7', age: 24, position: 'Developer' }
-			];
+
+			var defer = $q.defer();
+
+			// Wait cordova platform is ready.
+			$ionicPlatform.ready(function() {
+				window.slfile.loadString(CONTACT_FILENAME, function (string) {
+
+					var contacts = JSON.parse(string);
+					defer.resolve(contacts);
+
+				}, function () {
+					defer.resolve([]);
+				});
+			});
+
+			return defer.promise;
 		}
 
 		function getContact(id) {
-			return getContacts()[id];
+			return getContacts().then(function(contacts) {
+				return contacts[id];
+			});
+		}
+
+		function saveContacts(contacts) {
+			var string = JSON.stringify(contacts);
+
+			// Wait cordova platform is ready.
+			$ionicPlatform.ready(function() {
+
+				window.slfile.saveString(string, CONTACT_FILENAME);
+			});
 		}
 
 		return {
 			getContacts: getContacts,
-			getContact: getContact
+			getContact: getContact,
+			saveContacts: saveContacts
 		}
-	})
+	});

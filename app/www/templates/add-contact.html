@@ -1,0 +1,21 @@
+<ion-view view-title="New Contact">
+    <ion-content>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <input type="text" placeholder="Name" ng-model="data.name">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Position" ng-model="data.position">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Age" ng-model="data.age">
+            </label>
+        </div>
+        <button class="button button-block button-positive" ng-click="addContact()">
+            Add contact
+        </button>
+        <button class="button button-block button-assertive" ng-click="cancel()">
+            Cancel
+        </button>
+    </ion-content>
+</ion-view>

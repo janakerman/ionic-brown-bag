@@ -34,6 +34,11 @@ angular.module('starter', [
         url: "/contacts/:id",
         templateUrl: "templates/contact-detail.html",
         controller: 'ContactDetailCtrl'
+      })
+      .state('add-contact', {
+        url: 'contacts/new',
+        templateUrl: 'templates/add-contact.html',
+        controller: 'AddContactCtrl'
       });
 
     $urlRouterProvider.otherwise("/contacts");

@@ -1,4 +1,4 @@
-<ion-view view-title="Contacts">
+<ion-view view-title="Contacts" hide-back-button="true">
     <ion-nav-buttons side="primary">
         <button class="button button-icon icon ion-ios-minus-outline"
                 ng-click="deleteClicked()"
@@ -13,7 +13,7 @@
     </ion-nav-buttons>
     <ion-content>
         <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-            <ion-item ng-repeat="contact in data.contacts"
+            <ion-item ng-repeat="contact in data.contacts track by $index"
                       ui-sref="contact-detail({ id: $index })"
                       class="item item-avatar"
                       show-delete="shouldShowDelete"
@@ -27,6 +27,13 @@
                 </ion-delete-button>
                 <ion-reorder-button class="ion-navicon"
                                     on-reorder="onContactReorder(contact, $fromIndex, $toIndex)"></ion-reorder-button>
+            </ion-item>
+
+            <ion-item class="item item-button-right padding" ui-sref="add-contact">
+                Add new contact..
+                <button class="button button-positive">
+                    <i class="icon ion-plus"></i>
+                </button>
             </ion-item>
         </ion-list>
     </ion-content>
