@@ -15,9 +15,12 @@
         <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
             <ion-item ng-repeat="contact in data.contacts"
                       ui-sref="contact-detail({ id: $index })"
+                      class="item item-avatar"
                       show-delete="shouldShowDelete"
                       show-reorder="shouldShowReorder">
-                {{ contact.name }}
+                <img src="img/avatar.png" />
+                <h2>{{ contact.name }}</h2>
+                <p>{{ contact.position }}</p>
 
                 <ion-delete-button class="ion-minus-circled"
                                    ng-click="onContactDelete(contact)">
