@@ -30,6 +30,11 @@ angular.module('starter', [
         templateUrl: "templates/contact-list.html",
         controller: 'ContactListCtrl'
       })
+      .state('contact-detail', {
+        url: "/contacts/:id",
+        templateUrl: "templates/contact-detail.html",
+        controller: 'ContactDetailCtrl'
+      });
 
     $urlRouterProvider.otherwise("/contacts");
 

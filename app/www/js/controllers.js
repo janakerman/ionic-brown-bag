@@ -29,4 +29,9 @@ angular.module('starter.controllers', [])
       $scope.data.contacts.splice(fromIndex, 1);
       $scope.data.contacts.splice(toIndex, 0, contact);
     }
-});
+  })
+
+  .controller('ContactDetailCtrl', function($stateParams, $scope, contactService) {
+    $scope.contact = contactService.getContact($stateParams.id);
+  });
+

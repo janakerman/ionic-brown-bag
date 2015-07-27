@@ -12,7 +12,12 @@ angular.module('starter.services', [])
 			];
 		}
 
+		function getContact(id) {
+			return getContacts()[id];
+		}
+
 		return {
-			getContacts: getContacts
+			getContacts: getContacts,
+			getContact: getContact
 		}
 	})
